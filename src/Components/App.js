@@ -15,7 +15,7 @@ export default function App() {
     const [hasStarted, setHasStarted] = React.useState(false)
     const [answeredAll, setAnsweredAll] = React.useState(false)
     const [isChecked, setIsChecked] = React.useState(false)
-
+    const [apiError, setApiError] = React.useState(false)
 
     React.useEffect(() => {
         let answeredQuestions = (questionData.filter(item => {
@@ -30,8 +30,11 @@ export default function App() {
 
     React.useEffect(() => {
         fetch(`https://opentdb.com/api.php?amount=${settings.amount}&category=${settings.category}&difficulty=${settings.difficulty}&type=multiple`)
-            .then((response) => response.json())
+            .then(response => response.json())
             .then((data) => {   
+                if (data.response_code === 1) {
+                    throw new Error('Something went wrong');
+                }
                 data.results.map((item,id) => {
                     function decodeHtml(html) {         // this function turns html entities into readable text (opentdb api produces send text with html entities)
                         var txt = document.createElement("textarea");
@@ -58,10 +61,12 @@ export default function App() {
                     )
                 })
             })
+            .catch(error => setApiError(true))
     }, [isSet])
 
 
     function restart() {
+        setApiError(false)
         setQuestionData([])
         setSettings({
             amount: 0,
@@ -92,7 +97,7 @@ export default function App() {
         })
     }
 
-    function handleAnswerBtn(answerId, questionId) {
+    function handleAnswerClick(answerId, questionId) {
         setQuestionData(prevData => { return prevData.map(item => {
                return item.id === questionId ?  {...item, chosenAnswer: answerId} : item
             }) 
@@ -111,20 +116,26 @@ export default function App() {
                 <Intro startGame={handleStartClick}/>: 
             !isSet ?
                 <Settings handleClick={handleSettingsClick} handleChange={handleSettingsChange} settings={settings} /> :
-                !isChecked ?
-                    <>
-                        {questionData.map(question => <Question key={question.question} questionData={question} handleClick={handleAnswerBtn} isChecked={isChecked} />)}
-                        <div className="scoreBox">
-                            {answeredAll && <button className="mainBtn" onClick={() => setIsChecked(true)}>Check answers</button>}
-                        </div>
-                    </>:
-                    <>  
-                        {questionData.map(question => <Question key={question.question} questionData={question} handleClick={handleAnswerBtn} isChecked={isChecked} />)}
-                        <div className="scoreBox">
-                            <h2>You scored {score()}/{questionData.length} correct answers</h2>
-                            <button className="mainBtn" onClick={restart}>Play again</button>
-                        </div>
-                    </>
+            !isChecked ?
+                <>  
+                    {apiError && 
+                        <>
+                            <h2>Not enough data in database for this subject</h2>
+                            <button className="mainBtn" onClick={restart}>Try again</button>
+                        </>
+                        }
+                    {questionData.map(question => <Question key={question.question} questionData={question} handleClick={handleAnswerClick} isChecked={isChecked} />)}
+                    <div className="scoreBox">
+                        {answeredAll && <button className="mainBtn" onClick={() => setIsChecked(true)}>Check answers</button>}
+                    </div>
+                </>:
+                <>  
+                    {questionData.map(question => <Question key={question.question} questionData={question} handleClick={handleAnswerClick} isChecked={isChecked} />)}
+                    <div className="scoreBox">
+                        <h2>You scored {score()}/{questionData.length} correct answers</h2>
+                        <button className="mainBtn" onClick={restart}>Play again</button>
+                    </div>
+                </>
 
             }
         </main>

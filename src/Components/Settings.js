@@ -6,7 +6,7 @@ export default function Settings({handleClick, handleChange, settings}) {
             <h2>Game Settings</h2>
             <form onSubmit={handleClick}>
                 <label htmlFor="Amount">Number of questions:</label>
-                <input type="number" id="Amount" name="amount" min="1" max="50" value={settings.amount} onChange={handleChange} required></input>
+                <input type="number" id="Amount" name="amount" min="1" max="20" value={settings.amount} onChange={handleChange} required></input>
 
                 <label htmlFor="Category">Select Category:</label>
                 <select 
@@ -21,7 +21,6 @@ export default function Settings({handleClick, handleChange, settings}) {
                     <option value="10">Entertainment: Books</option>
                     <option value="11">Entertainment: Film</option>
                     <option value="12">Entertainment: Music</option>
-                    <option value="13">Entertainment: Musicals & Theatres</option>
                     <option value="14">Entertainment: Television</option>
                     <option value="15">Entertainment: Video Games</option>
                     <option value="16">Entertainment: Board Games</option>
@@ -33,13 +32,6 @@ export default function Settings({handleClick, handleChange, settings}) {
                     <option value="22">Geography</option>
                     <option value="23">History</option>
                     <option value="25">Art</option>
-                    <option value="26">Celebrities</option>
-                    <option value="27">Animals</option>
-                    <option value="28">Vehicles</option>
-                    <option value="29">Entertainment: Comics</option>
-                    <option value="30">Science: Gadgets</option>
-                    <option value="31">Entertainment: Japanese Anime & Manga</option>
-                    <option value="32">Entertainment: Cartoon & Animations</option>		
                 </select>
 
                 <label htmlFor="Difficulty">Select Difficulty:</label>
@@ -57,7 +49,7 @@ export default function Settings({handleClick, handleChange, settings}) {
                 </select>
 
 
-                <button className="mainBtn setBtn">Submit</button>
+                <button className="mainBtn">Submit</button>
             </form>
         </>
     )

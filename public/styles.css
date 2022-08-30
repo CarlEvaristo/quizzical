@@ -27,10 +27,11 @@ main {
     align-items: center;
     width:50vw;
     min-height: 80vh;
-    background: white;
-    /* background-image: url("./images/intro-page.png");
-    background-position: center center;
-    background-size: cover; */
+    background: #f5f7fb;
+    background-image: url("./images/bg-top.png"), url("./images/bg-bottom.png");
+    background-position: top, bottom;
+    background-repeat: no-repeat, no-repeat;
+    background-size: contain, contain;
     border-radius: 1.5rem;
     box-shadow: rgba(93, 50, 87, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.495) 0px -2px 6px 0px inset, rgba(0, 0, 0, 0.4) 0px 30px 90px;
     padding: 5em;
@@ -85,9 +86,6 @@ h3{
 .mainBtn:active {
     background: #4D5B9E;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
-}
-.setBtn {
-    width: 50%;
 }
 .answerBtn, .answerBtnAccent, .answerBtnChosen, .answerBtnRight, .answerBtnWrong{
     border: solid 1px #4D5B9E;
