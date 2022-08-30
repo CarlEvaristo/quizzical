@@ -79,6 +79,9 @@ h3{
     border-radius: 1em;
     border:none;
 }
+.setBtn {
+    width: 70%;
+}
 .mainBtn:hover {
     background: #6675bf;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;

@@ -49,7 +49,7 @@ export default function Settings({handleClick, handleChange, settings}) {
                 </select>
 
 
-                <button className="mainBtn">Submit</button>
+                <button className="mainBtn setBtn">Submit</button>
             </form>
         </>
     )
