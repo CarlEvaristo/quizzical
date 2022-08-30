@@ -16,7 +16,7 @@ export default function Settings({handleClick, handleChange, settings}) {
                     name="category"			        //=> LET OP: NAME MOET GELIJK ZIJN AAN REACT STATE
                     required
                 >
-                    {/* <option value="">-- Choose --</option>   */}
+                    <option value="">-- Choose --</option>  
                     <option value="9">General Knowledge</option>
                     <option value="10">Entertainment: Books</option>
                     <option value="11">Entertainment: Film</option>
@@ -50,7 +50,7 @@ export default function Settings({handleClick, handleChange, settings}) {
                     name="difficulty"			        //=> LET OP: NAME MOET GELIJK ZIJN AAN REACT STATE
                     required
                 >
-                    {/* <option value="">-- Choose --</option>   */}
+                    <option value="">-- Choose --</option>  
                     <option value="easy">Easy</option>        
                     <option value="medium">Medium</option>
                     <option value="hard">Hard</option>

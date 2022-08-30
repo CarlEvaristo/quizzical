@@ -23,7 +23,7 @@ body{
 main {
     display:flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     width:50vw;
     min-height: 80vh;
@@ -40,8 +40,9 @@ main {
 .intro {
     display:flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    height: 30vh;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 200px;
 }
 h1 {
     margin:0;
@@ -88,7 +89,7 @@ h3{
 .setBtn {
     width: 50%;
 }
-.answerBtn {
+.answerBtn, .answerBtnAccent, .answerBtnChosen, .answerBtnRight, .answerBtnWrong{
     border: solid 1px #4D5B9E;
     background-color: #fff;
     font-family: 'Inter';   
@@ -98,6 +99,23 @@ h3{
     padding: 0.5em 1.5em;
     margin:0.5em 1em 0.5em 0;
     border-radius: 1em;
+}
+.answerBtnChosen{
+    background:#2932644e;;
+}
+.answerBtnAccent {
+    background-color: #ffffff00;
+    border: solid 1px #2932648f;
+    color:#2932648f;
+}
+.answerBtnRight {
+    background-color: #94D7A2;
+    border:none;
+}
+.answerBtnWrong {
+    background-color: #F8BCBC;
+    border:none;
+    color:#2932648f;
 }
 form {
     display:flex;
@@ -124,12 +142,18 @@ input, select {
 select {
     text-align: left;
 }
-
 .questionBox {
     border-bottom: #DBDEF0 solid 1px; 
     width: 100%;  
     text-align: left;
     word-wrap: break-word;
+}
+.scoreBox {
+    width: 100%;  
+    display:flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top:3em;
 }
 
 @media (max-width:1000px) {
